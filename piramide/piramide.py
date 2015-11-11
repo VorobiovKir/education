@@ -8,7 +8,17 @@ def summer(arr, x=0, y=0, sum=0):
         y = len(arr[x]) - 1
 
     sum += arr[x][y]
+
     return max(summer(arr, x+1, y, sum), summer(arr, x+1, y+1, sum))
-    # return max(summer(arr, x+1, y, sum), summer(arr, x+1, y+1, sum))
+
+
+def summer2(arr):
+
+    for i in range(1, len(arr)):
+        arr[-i-1] = [max(y+j, y+z) for y, j, z in zip(arr[-i-1], arr[-i][:-1], arr[-i][1:])]
+
+    return arr[0][0]
+
 
 print summer(triangle)
+print summer2(triangle)
